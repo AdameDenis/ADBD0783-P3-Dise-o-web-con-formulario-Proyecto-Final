@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>ADBD0783-P3-Negocio- Formulario</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap">
+    
+    <style>
+        body { font-family: "Poppins", sans-serif; background-color: #f4f7f4; }
+        
+        .texto-destacado { color: #555; font-weight: bold; }
+        
+        .logo-header { 
+            max-height: 70px; 
+            width: auto; 
+            transition: transform 0.3s;
+        }
+
+        .logo-header:hover {
+            transform: scale(1.1);
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="w3-container w3-light-green w3-padding-24 w3-card-2">
+    <div class="w3-row-padding header-flex">
+        
+        <div class="w3-col s2 m2 w3-left-align">
+            <img src="logo.jpg" alt="Logo Izquierda" class="w3-image logo-header w3-circle">
+        </div>
+
+        <div class="w3-col s8 m8 w3-center">
+            <h1 class="w3-xlarge m3-hide-small"><b>CLÍNICA VETERINARIA</b></h1>
+            <p class="w3-medium w3-hide-small" style="margin-top:-10px;">Cuidado profesional para tus mascotas</p>
+        </div>
+
+        <div class="w3-col s2 m2 w3-right-align">
+            <img src="logo.jpg" alt="Logo Derecha" class="w3-image logo-header w3-circle">
+        </div>
+
+    </div>
+</header>
+
+<nav class="w3-bar w3-black w3-card">
+    <a href="/" class="w3-bar-item w3-button">Inicio</a>
+    <a href="/fveterinarios.html" class="w3-bar-item w3-button w3-mobile">Veterinarios</a>
+    <a href="/fpropietarios.html" class="w3-bar-item w3-button w3-mobile">Propietarios</a>
+    <a href="/fmascotas.html" class="w3-bar-item w3-button w3-mobile">Mascotas</a>
+    <a href="/fhistorial.html" class="w3-bar-item w3-button w3-mobile">Historial Clínico</a>
+    <a href="/festudios.html" class="w3-bar-item w3-button w3-mobile">Estudios</a>
+</nav>
+
+<div class="w3-container w3-padding-32 w3-center">
+    <div class="w3-card-4 w3-white w3-round-large w3-margin-top" style="max-width:600px; margin:auto;">
+        <div class="w3-container w3-green w3-round-large">
+            <h2>Información</h2>
+        </div>
+        <div class="w3-padding-16">
+            <p class="texto-destacado">Información básica de nuestra veterinaria.</p>
+            <img src="inf.jpg" alt="Información">
+            <p class="w3-padding">Una veterinaria hecha para toda mascota inclueyndo mamiferos, aves, reptiles y demas con perosnal capacipatdo en areas
+                que van desde primeros auxilios para aniaes en riesgo hasta cirguas y tratamiento complejos que demandan mas experiencia y dedicacion.</p>
+        </div>
+    </div>
+</div>
+
+<div class="w3-container w3-padding-32 w3-center">
+    <div class="w3-card-4 w3-white w3-round-large w3-margin-top" style="max-width:600px; margin:auto;">
+        <div class="w3-container w3-green w3-round-large">
+            <h2>UBICACIÓN</h2>
+        </div>
+        <div class="w3-padding-16">
+            <p class="texto-destacado">Información para encontrar la veterinaria.</p>
+            <img src="ubi.jpg" alt="Ubicación">
+            <p class="w3-padding">Asegurate de revisar con atención la Ubicación.</p>
+        </div>
+    </div>
+</div>
+
+
+
+    <footer class="w3-container w3-green w3-center w3-padding-16 w3-bottom">
+        <h5 style="margin:0; font-size: 14px;"><b>Pets Inc.</b> | Autor: <b>Adame Durán Brenda Denis 0783</b> | Grupo: <b>4°J</b> | Submódulo: <b>Bases de Datos No Relacionales</b></h5>
+        <p class="w3-small">© 2026 Veterinaria Para Todos</p>
+    </footer>
+</body>
+</html>

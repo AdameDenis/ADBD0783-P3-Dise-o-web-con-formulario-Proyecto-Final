@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Propietarios - Pets Inc.</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body { background-color: #f9f9f9; padding-bottom: 100px; } 
+        .active-nav { background-color: #fff !important; color: #000 !important; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header class="w3-container w3-green w3-padding-16">
+        <div class="w3-row-padding w3-white w3-round w3-card" style="max-width: 350px; padding: 5px; float: left;">
+            <div class="w3-col s3"><img src="logo.jpg" alt="Logo Pets Inc." style="width:100%; max-width:100px;"></div>
+            <div class="w3-col s9">
+                <h3 style="margin:0; font-weight:bold; color:#4CAF50;">CLÍNICA VETERINARIA</h3>
+                <p style="margin:0; font-size:12px; color:#666;">Cuidado profesional para tus mascotas</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="w3-bar w3-black">
+        <a href="/" class="w3-bar-item w3-button">Inicio</a>
+        <a href="/fveterinarios.html" class="w3-bar-item w3-button">Veterinarios</a>
+        <a href="/fpropietarios.html" class="w3-bar-item w3-button active-nav">Propietarios</a>
+        <a href="/fmascotas.html" class="w3-bar-item w3-button">Mascotas</a>
+        <a href="/fhistorial.html" class="w3-bar-item w3-button">Historial Clínico</a>
+        <a href="/festudios.html" class="w3-bar-item w3-button">Estudios</a>
+    </div>
+
+    <div class="w3-container w3-margin-top">
+        <form method="GET" action="/fpropietarios.html" class="w3-row-padding w3-card w3-white w3-padding w3-round">
+            <div class="w3-col m4 s12">
+                <select class="w3-select w3-border w3-round" name="campo">
+                    <option value="todos" <%= campo === 'todos' ? 'selected' : '' %>>Todos los campos</option>
+                    <option value="Nombre" <%= campo === 'Nombre' ? 'selected' : '' %>>Nombre</option>
+                    <option value="Mascota" <%= campo === 'Mascota' ? 'selected' : '' %>>Mascota</option>
+                    <option value="Direccion" <%= campo === 'Direccion' ? 'selected' : '' %>>Dirección</option>
+                    <option value="Telefono" <%= campo === 'Telefono' ? 'selected' : '' %>>Teléfono</option>
+                    <option value="Tel_emergencia" <%= campo === 'Tel_emergencia' ? 'selected' : '' %>>Tel. Emergencia</option>
+                    <option value="Correo" <%= campo === 'Correo' ? 'selected' : '' %>>Correo</option>
+                    <option value="ID" <%= campo === 'ID' ? 'selected' : '' %>>ID</option>
+                </select>
+            </div>
+            <div class="w3-col m5 s12">
+                <input class="w3-input w3-border w3-round" type="text" name="buscar" value="<%= busqueda %>" placeholder="🔍 Buscar valor o campo específico...">
+            </div>
+            <div class="w3-col m3 s12">
+                <button type="submit" class="w3-button w3-green w3-block w3-round">Buscar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="w3-row-padding w3-margin-top">
+        <div class="w3-col l3 m12 w3-margin-bottom">
+            <div class="w3-card-4 w3-white w3-padding w3-round">
+                <div class="w3-container w3-green w3-round"><h2>Registrar Propietario</h2></div>
+                <form action="/alta_propietario" method="POST" class="w3-container w3-margin-top">
+                    <label>ID Propietario:</label>
+                    <input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="id_propietario" required placeholder="Ej: 101">
+                    <label>Nombre Completo:</label>
+                    <input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="nombre" required>
+                    <label>Nombre de Mascota:</label>
+                    <input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="mascota" required>
+                    <label>Dirección:</label>
+                    <input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="direccion" required>
+                    <label>Teléfono:</label>
+                    <input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="telefono" required>
+                    <label>Tel. Emergencia:</label>
+                    <input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="tel_emergencia" required>
+                    <label>Correo Electrónico:</label>
+                    <input class="w3-input w3-border w3-round w3-margin-bottom" type="email" name="correo" required>
+                    <button class="w3-button w3-block w3-green w3-round w3-margin-top w3-padding" type="submit">Registrar Propietario</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="w3-col l9 m12">
+            <div class="w3-card-4 w3-white w3-round">
+                <div class="w3-container w3-green w3-center w3-round"><h2>CATÁLOGO DE PROPIETARIOS</h2></div>
+                <div class="w3-responsive w3-padding">
+                    <table class="w3-table-all w3-centered w3-hoverable">
+                        <thead>
+                            <tr class="w3-grey">
+                                <th>ID</th><th>Nombre</th><th>Mascota</th><th>Dirección</th><th>Teléfono</th><th>Tel. Emergencia</th><th>Correo</th><th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (propietarios && propietarios.length) { %>
+                                <% propietarios.forEach(function(prop){ %>
+                                    <tr>
+                                        <td><%= prop.ID %></td>
+                                        <td><%= prop.Nombre %></td>
+                                        <td><%= prop.Mascota %></td>
+                                        <td><%= prop.Direccion %></td>
+                                        <td><%= prop.Telefono %></td>
+                                        <td><%= prop.Tel_emergencia %></td>
+                                        <td><%= prop.Correo %></td>
+                                        <td>
+                                            <button onclick="document.getElementById('modalProp<%= prop.ID %>').style.display='block'" class="w3-button w3-blue w3-tiny w3-round">✏️</button>
+                                            <a href="#" onclick="return confirmAdminDelete('/eliminar_propietario/<%= prop.ID %>');" class="w3-button w3-red w3-tiny w3-round">🗑️</a>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            <% } else { %>
+                                <tr><td colspan="8" class="w3-center w3-text-grey">No hay registros.</td></tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <% if (propietarios && propietarios.length) { %>
+        <% propietarios.forEach(function(prop){ %>
+            <div id="modalProp<%= prop.ID %>" class="w3-modal">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-round" style="max-width:500px">
+                    <header class="w3-container w3-green w3-round-top">
+                        <span onclick="document.getElementById('modalProp<%= prop.ID %>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <h3>Editar Propietario</h3>
+                    </header>
+                    <form class="w3-container w3-padding" action="/editar_propietario/<%= prop.ID %>" method="POST" onsubmit="return requireAdminPassword(this);">
+                        <input type="hidden" name="admin_password" value="">
+                        
+                        <label>Nombre:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="nombre" value="<%= prop.Nombre %>" required>
+                        <label>Mascota:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="mascota" value="<%= prop.Mascota %>" required>
+                        <label>Dirección:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="direccion" value="<%= prop.Direccion %>" required>
+                        <label>Teléfono:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="telefono" value="<%= prop.Telefono %>" required>
+                        <label>Tel. Emergencia:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="tel_emergencia" value="<%= prop.Tel_emergencia %>" required>
+                        <label>Correo:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="email" name="correo" value="<%= prop.Correo %>" required>
+                        <button class="w3-button w3-block w3-green w3-round w3-padding" type="submit">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    <% } %>
+    
+    <footer class="w3-container w3-green w3-center w3-padding-16 w3-bottom">
+        <h5 style="margin:0; font-size: 14px;"><b>Pets Inc.</b> | Autor: <b>Adame Durán Brenda Denis 0783</b> | Grupo: <b>4°J</b> | Submódulo: <b>Bases de Datos No Relacionales</b></h5>
+        <p class="w3-small">© 2026 Veterinaria Para Todos</p>
+    </footer>
+
+    <script>
+        // Captura la contraseña para actualizar y la inyecta al input oculto
+        function requireAdminPassword(form) {
+            const pwd = prompt('Ingrese contraseña de administrador para guardar los cambios:');
+            if (pwd === null || pwd.trim() === "") {
+                return false; 
+            }
+            form.querySelector('input[name="admin_password"]').value = pwd;
+            return true; 
+        }
+
+        // Captura la contraseña para eliminar y la envía en los query params
+        function confirmAdminDelete(url) {
+            const pwd = prompt('¿Está seguro de eliminar este registro? Ingrese contraseña de administrador:');
+            if (pwd === null || pwd.trim() === "") {
+                return false; 
+            }
+            window.location.href = url + '?admin_password=' + encodeURIComponent(pwd);
+            return false;
+        }
+    </script>
+</body>
+</html>

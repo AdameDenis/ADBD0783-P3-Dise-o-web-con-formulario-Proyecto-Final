@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Veterinarios - Pets Inc.</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body { background-color: #f9f9f9; padding-bottom: 100px; } 
+        .active-nav { background-color: #fff !important; color: #000 !important; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header class="w3-container w3-green w3-padding-16">
+        <div class="w3-row-padding w3-white w3-round w3-card" style="max-width: 350px; padding: 5px; float: left;">
+            <div class="w3-col s3"><img src="/static/logo.jpg" alt="Logo Pets Inc." style="width:100%; max-width:100px;"></div>
+            <div class="w3-col s9">
+                <h3 style="margin:0; font-weight:bold; color:#4CAF50;">CLÍNICA VETERINARIA</h3>
+                <p style="margin:0; font-size:12px; color:#666;">Cuidado profesional para tus mascotas</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="w3-bar w3-black">
+        <a href="/" class="w3-bar-item w3-button">Inicio</a>
+        <a href="/fveterinarios.html" class="w3-bar-item w3-button active-nav">Veterinarios</a>
+        <a href="/fpropietarios.html" class="w3-bar-item w3-button">Propietarios</a>
+        <a href="/fmascotas.html" class="w3-bar-item w3-button">Mascotas</a>
+        <a href="/fhistorial.html" class="w3-bar-item w3-button">Historial Clínico</a>
+        <a href="/festudios.html" class="w3-bar-item w3-button">Estudios</a>
+    </div>
+
+    <div class="w3-container w3-margin-top">
+        <form method="GET" action="/fveterinarios.html" class="w3-row-padding w3-card w3-white w3-padding w3-round">
+            <div class="w3-col m4 s12">
+                <select class="w3-select w3-border w3-round" name="campo">
+                    <option value="todos" <%= campo === 'todos' ? 'selected' : '' %>>Todos los campos</option>
+                    <option value="Nombre" <%= campo === 'Nombre' ? 'selected' : '' %>>Nombre</option>
+                    <option value="Cedula" <%= campo === 'Cedula' ? 'selected' : '' %>>Cédula</option>
+                    <option value="Especialidad" <%= campo === 'Especialidad' ? 'selected' : '' %>>Especialidad</option>
+                    <option value="Consultorio" <%= campo === 'Consultorio' ? 'selected' : '' %>>Consultorio</option>
+                    <option value="Disponibilidad" <%= campo === 'Disponibilidad' ? 'selected' : '' %>>Disponibilidad</option>
+                    <option value="Horario" <%= campo === 'Horario' ? 'selected' : '' %>>Horario</option>
+                    <option value="Telefono" <%= campo === 'Telefono' ? 'selected' : '' %>>Teléfono</option>
+                    <option value="ID" <%= campo === 'ID' ? 'selected' : '' %>>ID</option>
+                </select>
+            </div>
+            <div class="w3-col m5 s12">
+                <input class="w3-input w3-border w3-round" type="text" name="buscar" value="<%= busqueda %>" placeholder="🔍 Buscar valor o campo específico...">
+            </div>
+            <div class="w3-col m3 s12">
+                <button type="submit" class="w3-button w3-green w3-block w3-round">Buscar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="w3-row-padding w3-margin-top">
+        <div class="w3-col l3 m12 w3-margin-bottom">
+            <div class="w3-card-4 w3-white w3-padding w3-round">
+                <div class="w3-container w3-green w3-round"><h2>Registrar Veterinario</h2></div>
+                <form action="/alta_veterinario" method="POST" class="w3-container w3-margin-top">
+                    <label>ID Veterinario:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="id_veterinario" required>
+                    <label>Nombre:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="nombre" required>
+                    <label>Cédula:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="cedula" required>
+                    <label>Especialidad:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="especialidad" required>
+                    <label>Consultorio:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="consultorio" required>
+                    <label>Disponibilidad:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="disponibilidad" required>
+                    <label>Horario:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="horario" required>
+                    <label>Teléfono:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="telefono" required>
+                    <button class="w3-button w3-block w3-green w3-round w3-margin-top w3-padding" type="submit">Registrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="w3-col l9 m12">
+            <div class="w3-card-4 w3-white w3-round">
+                <div class="w3-container w3-green w3-center w3-round"><h2>PLANTEL DE VETERINARIOS</h2></div>
+                <div class="w3-responsive w3-padding">
+                    <table class="w3-table-all w3-centered w3-hoverable">
+                        <thead>
+                            <tr class="w3-grey">
+                                <th>ID</th><th>Nombre</th><th>Cédula</th><th>Especialidad</th><th>Disponibilidad</th><th>Horario</th><th>Consultorio</th><th>Teléfono</th><th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (veterinarios && veterinarios.length) { %>
+                                <% veterinarios.forEach(function(vet){ %>
+                                    <tr>
+                                        <td><%= vet.ID %></td>
+                                        <td><%= vet.Nombre %></td>
+                                        <td><%= vet.Cedula %></td>
+                                        <td><%= vet.Especialidad %></td>
+                                        <td><%= vet.Disponibilidad %></td>
+                                        <td><%= vet.Horario %></td>
+                                        <td><%= vet.Consultorio %></td>
+                                        <td><%= vet.Telefono %></td>
+                                        <td>
+                                            <button onclick="document.getElementById('modalVet<%= vet.ID %>').style.display='block'" class="w3-button w3-blue w3-tiny w3-round">✏️</button>
+                                            <a href="#" onclick="return confirmAdminDelete('/eliminar_veterinario/<%= vet.ID %>');" class="w3-button w3-red w3-tiny w3-round">🗑️</a>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            <% } else { %>
+                                <tr><td colspan="9" class="w3-center w3-text-grey">No hay registros.</td></tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% if (veterinarios && veterinarios.length) { %>
+        <% veterinarios.forEach(function(vet){ %>
+            <div id="modalVet<%= vet.ID %>" class="w3-modal">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-round" style="max-width:500px">
+                    <header class="w3-container w3-green w3-round-top">
+                        <span onclick="document.getElementById('modalVet<%= vet.ID %>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <h3>Editar Veterinario</h3>
+                    </header>
+                    <form class="w3-container w3-padding" action="/editar_veterinario/<%= vet.ID %>" method="POST" onsubmit="return requireAdminPassword(this);">
+                        <input type="hidden" name="admin_password" value="">
+                        
+                        <label>Nombre:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="nombre" value="<%= vet.Nombre %>" required>
+                        <label>Cédula:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="cedula" value="<%= vet.Cedula %>" required>
+                        <label>Especialidad:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="especialidad" value="<%= vet.Especialidad %>" required>
+                        <label>Consultorio:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="consultorio" value="<%= vet.Consultorio %>" required>
+                        <label>Disponibilidad:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="disponibilidad" value="<%= vet.Disponibilidad %>" required>
+                        <label>Horario:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="horario" value="<%= vet.Horario %>" required>
+                        <label>Teléfono:</label><input class="w3-input w3-border w3-round w3-margin-bottom" type="text" name="telefono" value="<%= vet.Telefono %>" required>
+                        <button class="w3-button w3-block w3-green w3-round w3-padding" type="submit">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    <% } %>
+    
+    <footer class="w3-container w3-green w3-center w3-padding-16 w3-bottom">
+        <h5 style="margin:0; font-size: 14px;"><b>Pets Inc.</b> | Autor: <b>Adame Durán Brenda Denis 0783</b> | Grupo: <b>4°J</b> | Submódulo: <b>Bases de Datos No Relacionales</b></h5>
+        <p class="w3-small">© 2026 Veterinaria Para Todos</p>
+    </footer>
+
+    <script>
+        // Solicita contraseña para actualizar y la inyecta de forma segura al formulario POST
+        function requireAdminPassword(form) {
+            const pwd = prompt('Ingrese contraseña de administrador para guardar los cambios:');
+            if (pwd === null || pwd.trim() === "") {
+                return false; // Cancela el envío si no escribe nada
+            }
+            form.querySelector('input[name="admin_password"]').value = pwd;
+            return true; // Envía los datos al servidor para que él los valide
+        }
+
+        // Solicita contraseña para borrar y la anexa a la URL del GET alternativo
+        function confirmAdminDelete(url) {
+            const pwd = prompt('¿Está seguro de eliminar este registro? Ingrese contraseña de administrador:');
+            if (pwd === null || pwd.trim() === "") {
+                return false; // Cancela la acción
+            }
+            // Redirige mandando el parámetro de contraseña codificado
+            window.location.href = url + '?admin_password=' + encodeURIComponent(pwd);
+            return false;
+        }
+    </script>
+</body>
+</html>
