@@ -156,7 +156,7 @@ app.get('/fmascotas.html', async (req, res) => {
     try {
         const busqueda = req.query.buscar || '';
         const campo = req.query.campo || 'todos';
-        const campos = ["Nombre", "Especie_Raza", "Edad", "Genero", "Peso", "Dueno_ID", "Vacunas", "Caracteristicas", "ID"];
+        const campos = ["Nombre", "Especie_Raza", "Edad", "Género", "Peso", "Dueno_ID", "Vacunas", "Caracteristicas", "ID"];
         let query = {};
 
         if (busqueda) {
